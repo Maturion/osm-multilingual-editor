@@ -1,0 +1,47 @@
+# Copy this file to config.yaml and fill in your OAuth2 credentials.
+# config.yaml is gitignored since it holds secrets.
+
+# Which environment to use for login/upload: "dev" or "prod".
+# Note: Overpass reads always hit real production OSM data regardless of
+# this setting (there is no Overpass mirror for the dev/sandbox server) -
+# this only controls where you log in and where changesets get uploaded.
+environment: dev
+
+# Public Overpass API instance used for all read/fetch queries.
+overpass_url: https://overpass-api.de/api/interpreter
+
+# Tag keys that count as "POI" when fetching. Extend freely.
+poi_tags:
+  - amenity
+  - shop
+  - tourism
+  - leisure
+  - office
+  - craft
+  - historic
+  - man_made
+
+# Base URL the app is served at, through the Caddy HTTPS proxy (used for CORS +
+# post-login redirect). OSM's OAuth2 apps require an https:// redirect URI, which
+# is why everything runs behind proxy/ locally - see README.md.
+frontend_url: https://localhost
+
+# Must match the redirect URI configured on your OAuth2 application.
+redirect_uri: https://localhost/api/auth/callback
+
+# Random secret used to sign session cookies. Change this to any random string.
+session_secret: change-me-to-a-random-string
+
+environments:
+  dev:
+    osm_base_url: https://master.apis.dev.openstreetmap.org
+    oauth_authorize_url: https://master.apis.dev.openstreetmap.org/oauth2/authorize
+    oauth_token_url: https://master.apis.dev.openstreetmap.org/oauth2/token
+    client_id: ""
+    client_secret: ""
+  prod:
+    osm_base_url: https://api.openstreetmap.org
+    oauth_authorize_url: https://www.openstreetmap.org/oauth2/authorize
+    oauth_token_url: https://www.openstreetmap.org/oauth2/token
+    client_id: ""
+    client_secret: ""

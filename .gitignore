@@ -1,0 +1,22 @@
+# Backend
+backend/.venv/
+backend/config.yaml
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vscode/
+frontend/.idea/
+
+# Proxy TLS cert/key (generated locally via proxy/generate-cert.sh)
+proxy/certs/*.pem
+
+# Editors / OS
+.DS_Store
+
+# General idea directories
+.vscode/
+.idea/
